@@ -51,7 +51,7 @@ configure_ci_runner() {
   if [[ ! -e ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/config.toml ]]; then
     if [[ -n ${CI_SERVER_URL} && -n ${RUNNER_TOKEN} && -n ${RUNNER_DESCRIPTION} && -n ${RUNNER_EXECUTOR} ]]; then
       if [[ -n ${RUNNER_DOCKER_IMAGE} ]];then
-        RUNNER_EXTRA_ARGS="--docker-privileged --docker-image ${RUNNER_DOCKER_IMAGE}"
+        RUNNER_EXTRA_ARGS="--docker-privileged --docker-image ${RUNNER_DOCKER_IMAGE} --docker-volumes /var/run/docker.sock:/var/run/docker.sock"
       fi
       sudo -HEu ${GITLAB_CI_MULTI_RUNNER_USER} \
         gitlab-ci-multi-runner register --config ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/config.toml \
