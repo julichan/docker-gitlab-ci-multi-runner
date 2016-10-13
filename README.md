@@ -1,6 +1,6 @@
 [![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/gitlab-ci-multi-runner/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/gitlab-ci-multi-runner)
 
-# sameersbn/gitlab-ci-multi-runner:1.1.4-4
+# sameersbn/gitlab-ci-multi-runner:v1.7.0-rc.2
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
