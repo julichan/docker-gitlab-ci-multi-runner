@@ -1,7 +1,10 @@
 # Changelog
 
-**9.1.1**
-  - bumped to runner 9.1.1
+**9.3.0**
+  - bumped to runner 9.3.0
+
+**9.3.0**
+  - bumped to runner 9.3.0
 
 **1.11.2**
   - bumped to runner 1.11.2 and sameersbn/ubuntu:14.04.20170228
