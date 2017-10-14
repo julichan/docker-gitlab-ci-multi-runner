@@ -1,10 +1,10 @@
 FROM sameersbn/ubuntu:14.04.20170228
 MAINTAINER sameer@damagehead.com
 
-ENV GITLAB_CI_MULTI_RUNNER_VERSION=1.11.2 \
-    GITLAB_CI_MULTI_RUNNER_USER=gitlab_ci_multi_runner \
-    GITLAB_CI_MULTI_RUNNER_HOME_DIR="/home/gitlab_ci_multi_runner"
-ENV GITLAB_CI_MULTI_RUNNER_DATA_DIR="${GITLAB_CI_MULTI_RUNNER_HOME_DIR}/data"
+ENV GITLAB_RUNNER_VERSION=10.0.2 \
+    GITLAB_RUNNER_USER=gitlab_runner \
+    GITLAB_RUNNER_HOME_DIR="/home/gitlab_runner"
+ENV GITLAB_RUNNER_DATA_DIR="${GITLAB_RUNNER_HOME_DIR}/data"
 
 ENV CA_CERTIFICATES_PATH=''
 ENV RUNNER_CONCURRENT=''
@@ -26,16 +26,16 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E1DD270288B4E60
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       git-core openssh-client curl libapparmor1 \
- && wget -O /usr/local/bin/gitlab-ci-multi-runner \
-      https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/v${GITLAB_CI_MULTI_RUNNER_VERSION}/binaries/gitlab-ci-multi-runner-linux-amd64 \
- && chmod 0755 /usr/local/bin/gitlab-ci-multi-runner \
- && adduser --disabled-login --gecos 'GitLab CI Runner' ${GITLAB_CI_MULTI_RUNNER_USER} \
- && sudo -HEu ${GITLAB_CI_MULTI_RUNNER_USER} ln -sf ${GITLAB_CI_MULTI_RUNNER_DATA_DIR}/.ssh ${GITLAB_CI_MULTI_RUNNER_HOME_DIR}/.ssh \
+ && wget -O /usr/local/bin/gitlab-runner \
+      https://gitlab-runner-downloads.s3.amazonaws.com/v${GITLAB_RUNNER_VERSION}/binaries/gitlab-runner-linux-amd64 \
+ && chmod 0755 /usr/local/bin/gitlab-runner \
+ && adduser --disabled-login --gecos 'GitLab CI Runner' ${GITLAB_RUNNER_USER} \
+ && sudo -HEu ${GITLAB_RUNNER_USER} ln -sf ${GITLAB_RUNNER_DATA_DIR}/.ssh ${GITLAB_RUNNER_HOME_DIR}/.ssh \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
-VOLUME ["${GITLAB_CI_MULTI_RUNNER_DATA_DIR}"]
-WORKDIR "${GITLAB_CI_MULTI_RUNNER_HOME_DIR}"
+VOLUME ["${GITLAB_RUNNER_DATA_DIR}"]
+WORKDIR "${GITLAB_RUNNER_HOME_DIR}"
 ENTRYPOINT ["/sbin/entrypoint.sh"]
