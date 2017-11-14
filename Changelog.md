@@ -1,5 +1,9 @@
 # Changelog
 
+**10.1.0**
+  - bumped to runner 10.1.0
+  - environment variable name changed
+
 **9.3.0**
   - bumped to runner 9.3.0
 
