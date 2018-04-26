@@ -70,6 +70,9 @@ configure_ci_runner() {
             RUNNER_DOCKER_ARGS="$RUNNER_DOCKER_ARGS --docker-volumes ${VOLUME}"
 	  done
         fi
+        if [[ -n ${RUNNER_DOCKER_BUILD_DIR} ]];then
+          RUNNER_DOCKER_ARGS="$RUNNER_DOCKER_ARGS --builds-dir ${RUNNER_DOCKER_BUILD_DIR}"
+        fi
       fi
       sudo -HEu ${GITLAB_RUNNER_USER} \
         gitlab-runner register --config ${GITLAB_RUNNER_DATA_DIR}/config.toml \
