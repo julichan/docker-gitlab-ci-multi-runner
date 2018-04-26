@@ -91,7 +91,7 @@ You can customise the runner with the following env variables:
 - RUNNER_DOCKER_MODE: the docker mode to use, socket or dind
 - RUNNER_DOCKER_PRIVATE_REGISTRY_URL: url of private registry the runner should access
 - RUNNER_DOCKER_PRIVATE_REGISTRY_TOKEN: token of private registry the runner should access
-- RUNNER_DOCKER_ADDITIONAL_VOLUME: additionals volumes to share between host and jobs
+- RUNNER_DOCKER_ADDITIONAL_VOLUME: additionals volumes to share between host and jobs (multiple volumes must be separated by a space)
 - RUNNER_OUTPUT_LIMIT: output limit in KB that a build can produce
 - RUNNER_AUTOUNREGISTER: auto unregister the runner when the container stops
 

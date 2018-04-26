@@ -66,7 +66,9 @@ configure_ci_runner() {
           RUNNER_DOCKER_ARGS="$RUNNER_DOCKER_ARGS --docker-volumes /var/run/docker.sock:/var/run/docker.sock"
         fi
         if [[ -n ${RUNNER_DOCKER_ADDITIONAL_VOLUME} ]];then
-          RUNNER_DOCKER_ARGS="$RUNNER_DOCKER_ARGS --docker-volumes ${RUNNER_DOCKER_ADDITIONAL_VOLUME}"
+	  for VOLUME in ${RUNNER_DOCKER_ADDITIONAL_VOLUME}; do
+            RUNNER_DOCKER_ARGS="$RUNNER_DOCKER_ARGS --docker-volumes ${VOLUME}"
+	  done
         fi
       fi
       sudo -HEu ${GITLAB_RUNNER_USER} \
