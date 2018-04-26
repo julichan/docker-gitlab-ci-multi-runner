@@ -1,5 +1,9 @@
 # Changelog
 
+**10.7.0**
+  - bumped to runner 10.7.0
+  - added multiple volumes support
+
 **10.1.0**
   - bumped to runner 10.1.0
   - environment variable name changed
