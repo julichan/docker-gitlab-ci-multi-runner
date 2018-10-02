@@ -1,5 +1,8 @@
 # Changelog
 
+**11.3.0**
+  - bumped to runner 11.3.0
+
 **10.7.0**
   - bumped to runner 10.7.0
   - added multiple volumes support
