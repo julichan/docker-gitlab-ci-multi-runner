@@ -1,5 +1,8 @@
 # Changelog
 
+**11.9.0**
+  - bumped to runner 11.9.0
+
 **11.3.1**
   - bumped to runner 11.3.1
 
