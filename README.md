@@ -94,6 +94,7 @@ You can customise the runner with the following env variables:
 - RUNNER_DOCKER_ADDITIONAL_VOLUME: additionals volumes to share between host and jobs (multiple volumes must be separated by a space)
 - RUNNER_OUTPUT_LIMIT: output limit in KB that a build can produce
 - RUNNER_AUTOUNREGISTER: auto unregister the runner when the container stops
+- RUNNER_ADVERTISE_SESSION_ADDRESS: public url to the gitlab-runner docker server (e.g. `my-runner-server.com`). Use if and only if you want to set up [session server](https://docs.gitlab.com/ee/ci/interactive_web_terminal/). You'll also need to expose some port to reach container's `8920` port.
 
 ## Using docker executor
 
