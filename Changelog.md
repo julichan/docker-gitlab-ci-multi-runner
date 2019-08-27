@@ -1,5 +1,11 @@
 # Changelog
 
+**12.2.0**
+  - bumped to runner 12.2.0
+
+**11.9.0-1**
+  - Configure session server for web terminal
+
 **11.9.0**
   - bumped to runner 11.9.0
 
@@ -40,7 +46,7 @@
 
 **1.9.3**
   - gitlab-ci-multi-runner: upgrade to 1.9.3
-  - added support of RUNNER_OUTPUT_LIMIT 
+  - added support of RUNNER_OUTPUT_LIMIT
 
 **1.9.0-1**
   - fix restart of container
