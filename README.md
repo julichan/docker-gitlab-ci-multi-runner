@@ -26,7 +26,6 @@ If you find this image useful here's how you can help:
 
 - Send a pull request with your awesome features and bug fixes
 - Help users resolve their [issues](../../issues?q=is%3Aopen+is%3Aissue).
-- Support the development of this image with a [donation](http://www.damagehead.com/donate/)
 
 ## Issues
 
@@ -64,7 +63,7 @@ You can use any ENV variable supported by the gitlab ci runner.
 
 ```bash
 docker run --name docker-gitlab-multi-runner -d --restart=always \
-  --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
+  --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=shell' \
   julichan/docker-gitlab-multi-runner:v13.4.0
@@ -102,7 +101,7 @@ Start the docker runner in socket mode :
 ```bash
 docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /var/run/docker.sock:/var/run/docker.sock
-  --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
+  --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=socket'
@@ -113,7 +112,7 @@ Start the docker runner in dind mode :
 ```bash
 docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /var/run/docker.sock:/var/run/docker.sock
-  --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
+  --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=dind'
@@ -137,13 +136,13 @@ You can customize the launch command by specifying arguments to `docker-gitlab-m
 
 ```bash
 docker run --name docker-gitlab-multi-runner -it --rm \
-  --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
+  --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
   julichan/docker-gitlab-multi-runner:v13.4.0 --help
 ```
 
 ## Persistence
 
-For the image to preserve its state across container shutdown and startup you should mount a volume at `/home/gitlab_ci_multi_runner/data`.
+For the image to preserve its state across container shutdown and startup you should mount a volume at `/home/gitlabi_runner/data`.
 
 > *The [Quickstart](#quickstart) command already mounts a volume for persistence.*
 
@@ -156,7 +155,7 @@ chcon -Rt svirt_sandbox_file_t /srv/docker/gitlab-runner
 
 ## Deploy Keys
 
-At first run the image automatically generates SSH deploy keys which are installed at `/home/gitlab_ci_multi_runner/data/.ssh` of the persistent data store. You can replace these keys with your own if you wish to do so.
+At first run the image automatically generates SSH deploy keys which are installed at `/home/gitlabi_runner/data/.ssh` of the persistent data store. You can replace these keys with your own if you wish to do so.
 
 You can use these keys to allow the runner to gain access to your private git repositories over the SSH protocol.
 
@@ -169,7 +168,7 @@ You can use these keys to allow the runner to gain access to your private git re
 
 If your GitLab server is using self-signed SSL certificates then you should make sure the GitLab server's SSL certificate is trusted on the runner for the git clone operations to work.
 
-The runner is configured to look for trusted SSL certificates at `/home/gitlab_ci_multi_runner/data/certs/ca.crt`. This path can be changed using the `CA_CERTIFICATES_PATH` enviroment variable.
+The runner is configured to look for trusted SSL certificates at `/home/gitlab_runner/data/certs/ca.crt`. This path can be changed using the `CA_CERTIFICATES_PATH` enviroment variable.
 
 Create a file named `ca.crt` in a `certs` folder at the root of your persistent data volume. The `ca.crt` file should contain the root certificates of all the servers you want to trust.
 
