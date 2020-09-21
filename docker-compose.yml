@@ -3,15 +3,15 @@ version: '2'
 services:
   runner_docker:
     restart: always
-    image: local-grunner
+    image: julichan/docker-gitlab-multi-runner
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /home/gitlab_ci_multi_runner/data
+    - /home/gitlab_runner/data
     ports:
       - 8000-8100:9000
     environment:
       - CI_SERVER_URL=https://mydomaingitlab.com/ci
-      - RUNNER_TOKEN=
+      - RUNNER_TOKEN="TOKEN"
       - RUNNER_DESCRIPTION="Docker runner"
       - RUNNER_EXECUTOR=docker
       - RUNNER_DOCKER_IMAGE=docker:latest

@@ -1,6 +1,4 @@
-[![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/gitlab-ci-multi-runner/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/gitlab-ci-multi-runner)
-
-# digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+# julichan/docker-gitlab-multi-runner:v13.4.0
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -20,7 +18,7 @@
 
 # Introduction
 
-`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [gitlab-ci-multi-runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner). Use this image to build your CI runner images.
+`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-multi-runner](https://gitlab.com/gitlab-org/docker-gitlab-multi-runner). Use this image to build your CI runner images.
 
 ## Contributing
 
@@ -46,18 +44,16 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/sameersbn/gitlab-ci-multi-runner) and is the recommended method of installation.
-
-> **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/gitlab-ci-multi-runner)
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/julichan/docker-gitlab-multi-runner) and is the recommended method of installation.
 
 ```bash
-docker pull digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+docker pull julichan/docker-gitlab-multi-runner:v13.4.0
 ```
 
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t sameersbn/gitlab-ci-multi-runner github.com/sameersbn/docker-gitlab-ci-multi-runner
+docker build -t julichan/docker-gitlab-multi-runner github.com/julichan/docker-gitlab-multi-runner
 ```
 
 ## Quickstart
@@ -67,11 +63,11 @@ Before a runner can process your CI jobs, it needs to be authorized to access th
 You can use any ENV variable supported by the gitlab ci runner.
 
 ```bash
-docker run --name gitlab-ci-multi-runner -d --restart=always \
+docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=shell' \
-  digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+  julichan/docker-gitlab-multi-runner:v13.4.0
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -104,24 +100,24 @@ If `RUNNER_DOCKER_MODE` is set to `socket`, the docker socket is shared between 
 
 Start the docker runner in socket mode :
 ```bash
-docker run --name gitlab-ci-multi-runner -d --restart=always \
+docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /var/run/docker.sock:/var/run/docker.sock
   --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=socket'
-  digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+  julichan/docker-gitlab-multi-runner:v13.4.0
 ```
 
 Start the docker runner in dind mode :
 ```bash
-docker run --name gitlab-ci-multi-runner -d --restart=always \
+docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /var/run/docker.sock:/var/run/docker.sock
   --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=dind'
-  digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+  julichan/docker-gitlab-multi-runner:v13.4.0
 ```
 
 If you want to share volumes between your containers and the runner in socket mode, use the `RUNNER_DOCKER_ADDITIONAL_VOLUME` variable to share `/builds:/builds`.
@@ -137,12 +133,12 @@ You an setup your runner to start multiple job in parallel by setting the enviro
 
 ## Command-line arguments
 
-You can customize the launch command by specifying arguments to `gitlab-ci-multi-runner` on the `docker run` command. For example the following command prints the help menu of `gitlab-ci-multi-runner` command:
+You can customize the launch command by specifying arguments to `docker-gitlab-multi-runner` on the `docker run` command. For example the following command prints the help menu of `docker-gitlab-multi-runner` command:
 
 ```bash
-docker run --name gitlab-ci-multi-runner -it --rm \
+docker run --name docker-gitlab-multi-runner -it --rm \
   --volume /srv/docker/gitlab-runner:/home/gitlab_ci_multi_runner/data \
-  digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1 --help
+  julichan/docker-gitlab-multi-runner:v13.4.0 --help
 ```
 
 ## Persistence
@@ -177,7 +173,7 @@ The runner is configured to look for trusted SSL certificates at `/home/gitlab_c
 
 Create a file named `ca.crt` in a `certs` folder at the root of your persistent data volume. The `ca.crt` file should contain the root certificates of all the servers you want to trust.
 
-With respect to GitLab, append the contents of the `gitlab.crt` file to `ca.crt`. For more information on the `gitlab.crt` file please refer the [README](https://github.com/sameersbn/docker-gitlab/blob/master/README.md#ssl) of the [docker-gitlab](https://github.com/sameersbn/docker-gitlab) container.
+With respect to GitLab, append the contents of the `gitlab.crt` file to `ca.crt`. For more information on the `gitlab.crt` file please refer the [README](https://github.com/julichan/docker-gitlab/blob/master/README.md#ssl) of the [docker-gitlab](https://github.com/julichan/docker-gitlab) container.
 
 Similarly you should also trust the SSL certificate of the GitLab CI server by appending the contents of the `gitlab-ci.crt` file to `ca.crt`.
 
@@ -190,27 +186,27 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+  docker pull julichan/docker-gitlab-multi-runner:v13.4.0
   ```
 
   2. Stop the currently running image:
 
   ```bash
-  docker stop gitlab-ci-multi-runner
+  docker stop docker-gitlab-multi-runner
   ```
 
   3. Remove the stopped container
 
   ```bash
-  docker rm -v gitlab-ci-multi-runner
+  docker rm -v docker-gitlab-multi-runner
   ```
 
   4. Start the updated image
 
   ```bash
-  docker run -name gitlab-ci-multi-runner -d \
+  docker run -name docker-gitlab-multi-runner -d \
     [OPTIONS] \
-    digitallumberjack/docker-gitlab-ci-multi-runner:v13.0.1
+    julichan/docker-gitlab-multi-runner:v13.4.0
   ```
 
 ## Shell Access
@@ -218,5 +214,5 @@ To upgrade to newer releases:
 For debugging and maintenance purposes you may want access the containers shell. If you are using Docker version `1.3.0` or higher you can access a running containers shell by starting `bash` using `docker exec`:
 
 ```bash
-docker exec -it gitlab-ci-multi-runner bash
+docker exec -it docker-gitlab-multi-runner bash
 ```
