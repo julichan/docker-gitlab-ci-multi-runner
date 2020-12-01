@@ -18,7 +18,7 @@
 
 # Introduction
 
-`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-multi-runner](https://gitlab.com/gitlab-org/docker-gitlab-runner). Use this image to build your CI runner images.
+`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [gitlab-runner](https://gitlab.com/gitlab-org/gitlab-runner). Use this image to build your CI runner images.
 
 ## Contributing
 
