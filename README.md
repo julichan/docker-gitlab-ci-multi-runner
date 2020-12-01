@@ -1,4 +1,4 @@
-# julichan/docker-gitlab-multi-runner:v13.4.0
+# julichan/docker-gitlab-runner:v13.4.0
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -18,7 +18,7 @@
 
 # Introduction
 
-`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-multi-runner](https://gitlab.com/gitlab-org/docker-gitlab-multi-runner). Use this image to build your CI runner images.
+`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-runner](https://gitlab.com/gitlab-org/docker-gitlab-runner). Use this image to build your CI runner images.
 
 ## Contributing
 
