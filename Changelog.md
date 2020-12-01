@@ -1,5 +1,8 @@
 # Changelog
 
+**13.5.0**
+  - bumped to runner 13.5.0
+
 **13.4.0**
   - bumped to runner 13.4.0 and changed prerequisites
 
