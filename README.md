@@ -1,4 +1,4 @@
-# julichan/docker-gitlab-multi-runner:v13.4.0
+# julichan/docker-gitlab-runner:v13.5.0
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -18,7 +18,7 @@
 
 # Introduction
 
-`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-multi-runner](https://gitlab.com/gitlab-org/docker-gitlab-multi-runner). Use this image to build your CI runner images.
+`Dockerfile` to create a [Docker](https://www.docker.com/) container base image for [docker-gitlab-multi-runner](https://gitlab.com/gitlab-org/docker-gitlab-runner). Use this image to build your CI runner images.
 
 ## Contributing
 
@@ -43,10 +43,10 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/julichan/docker-gitlab-multi-runner) and is the recommended method of installation.
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/julichan/docker-gitlab-runner) and is the recommended method of installation.
 
 ```bash
-docker pull julichan/docker-gitlab-multi-runner:v13.4.0
+docker pull julichan/docker-gitlab-multi-runner:v13.5.0
 ```
 
 Alternatively you can build the image yourself.
@@ -66,7 +66,7 @@ docker run --name docker-gitlab-multi-runner -d --restart=always \
   --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=shell' \
-  julichan/docker-gitlab-multi-runner:v13.4.0
+  julichan/docker-gitlab-multi-runner:v13.5.0
 ```
 
 *Alternatively, you can use the sample [docker-compose.yml](docker-compose.yml) file to start the container using [Docker Compose](https://docs.docker.com/compose/)*
@@ -105,7 +105,7 @@ docker run --name docker-gitlab-multi-runner -d --restart=always \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=socket'
-  julichan/docker-gitlab-multi-runner:v13.4.0
+  julichan/docker-gitlab-multi-runner:v13.5.0
 ```
 
 Start the docker runner in dind mode :
@@ -116,7 +116,7 @@ docker run --name docker-gitlab-multi-runner -d --restart=always \
   --env='CI_SERVER_URL=http://git.example.com/ci' --env='RUNNER_TOKEN=xxxxxxxxx' \
   --env='RUNNER_DESCRIPTION=myrunner' --env='RUNNER_EXECUTOR=docker' \
   --env='RUNNER_DOCKER_IMAGE=docker:latest' --env='RUNNER_DOCKER_MODE=dind'
-  julichan/docker-gitlab-multi-runner:v13.4.0
+  julichan/docker-gitlab-multi-runner:v13.5.0
 ```
 
 If you want to share volumes between your containers and the runner in socket mode, use the `RUNNER_DOCKER_ADDITIONAL_VOLUME` variable to share `/builds:/builds`.
@@ -137,7 +137,7 @@ You can customize the launch command by specifying arguments to `docker-gitlab-m
 ```bash
 docker run --name docker-gitlab-multi-runner -it --rm \
   --volume /srv/docker/gitlab-runner:/home/gitlabi_runner/data \
-  julichan/docker-gitlab-multi-runner:v13.4.0 --help
+  julichan/docker-gitlab-multi-runner:v13.5.0 --help
 ```
 
 ## Persistence
@@ -185,7 +185,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull julichan/docker-gitlab-multi-runner:v13.4.0
+  docker pull julichan/docker-gitlab-multi-runner:v13.5.0
   ```
 
   2. Stop the currently running image:
@@ -205,7 +205,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name docker-gitlab-multi-runner -d \
     [OPTIONS] \
-    julichan/docker-gitlab-multi-runner:v13.4.0
+    julichan/docker-gitlab-multi-runner:v13.5.0
   ```
 
 ## Shell Access
