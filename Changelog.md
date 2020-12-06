@@ -1,5 +1,8 @@
 # Changelog
 
+**13.6.0**
+  - bumped to runner 13.6.0
+
 **13.5.0**
   - bumped to runner 13.5.0
 
